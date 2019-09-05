@@ -216,7 +216,7 @@ project_hash =  {
 materials_list = {
 plywood: {
     name: "plywood",
-    price:100,
+    price: 100,
     type: "panel"
 },
 shelf_support: {
@@ -265,7 +265,7 @@ def cabinet_carcasse_parts_generator(cabinet_height, cabinet_width, cabinet_dept
     carcasse_array = []
 
     two_times_thk = material_thickness*2
- p cabinet_height
+#  p cabinet_height
     side_length = cabinet_height - two_times_thk
 
     top =  {
@@ -471,16 +471,15 @@ def sheet_counter(arr, depth)
     if depth < 296
         sheet_qty = arr.length/4.0
 
-    elsif depth >=296
-        if depth < 396  ### to be able to insert these values if they were methods? 
-            sheet_qty = arr.length/3.0
-        end
+    elsif depth >=296 && depth < 396  
 
-    elsif depth >=396
-        if depth < 596
-            sheet_qty = arr.length/2.0
-        end
+        sheet_qty = arr.length/3.0
 
+
+    elsif depth >=396 && depth < 596
+
+        sheet_qty = arr.length/2.0
+        
     else sheet_qty = arr.length
     
     end
@@ -527,6 +526,8 @@ divider_quantity = divider_quantity_calculator(project_hash[:width])
 part_length_array = value_extractor(complete_parts_array, project_hash[:length])
 
 row_array = row_builder(part_length_array)
+
+p row_array
 
 plywood_total = sheet_counter(row_array, project_hash[:depth].to_i)
 
@@ -610,9 +611,9 @@ def price_calculator(qty, price)
     qty*price
 end
 
-machining_fee_per_mm = 0.01
+machining_fee_per_mm = 0.008
 
-handling_fee_per_piece = 2.5
+handling_fee_per_piece = 2
 
 panel_cost = price_calculator(plywood_total, materials_list[:plywood][:price])
 
@@ -640,20 +641,41 @@ machining_cost = price_calculator(total_machining_length, machining_fee_per_mm) 
 
 # p machining_cost
 
-p panel_cost
-p connector_cost
-p shelf_support_cost
-p machining_cost
+
+
+
+
 
 def mark_up(mark_up, *item)
    item.sum*mark_up
 end
 
-final_price = mark_up(3, panel_cost, connector_cost, shelf_support_cost)+ mark_up(1.3, machining_cost)
+final_price = mark_up(3, panel_cost, connector_cost, shelf_support_cost)+ mark_up(1.3, machining_cost) 
 
+
+puts "cabinet details"
+
+puts project_hash
+
+puts "BOM"
+ 
+puts "#{materials_list[:plywood][:name]} | #{plywood_total} | #{panel_cost}"
+puts "#{materials_list[:connector][:name]} | #{connector_qty} | #{connector_cost}"
+puts "#{materials_list[:shelf_support][:name]} | #{shelf_support_qty} | #{shelf_support_cost}"
+puts "Total machining length | #{total_machining_length} | #{panel_cost}"
+puts "Total handling  | #{total_pieces} | #{price_calculator(total_pieces, handling_fee_per_piece)}"
+
+
+
+
+
+    
 puts "final price:"
 
-p final_price
+
+puts "$#{final_price}"
+
+
 
 
 
