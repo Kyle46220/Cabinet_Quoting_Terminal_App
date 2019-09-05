@@ -2,6 +2,9 @@
 ### fucken box maj
 
 require 'tty-prompt'
+require 'colorize'
+require 'rubocop'
+
 
 prompt = TTY::Prompt.new
 
@@ -11,41 +14,6 @@ size_3 = 380
 
 array = [size_1,size_2,size_3]
 
-# def height_constraint(height, arr, shelf_qty)
-#     array = []
-
-#     result = []
-    
-#     arr.each do |item|
-#         1.times do
-#             array << item
-#         end
-#     end
-
-
-#     all_combinations  = array.repeated_combination(shelf_qty+1).uniq.to_a
-#     # p all_combinations
-#     all_combinations.each do |item|
-#        result << item.sum
-#     end   
-#     # result
-
-#     closest = result.uniq.sort.group_by do |item|
-#         item <=> height
-#     end
-
-#  p closest
-
-#  if closest[-1]
-#     adj_height =  closest[-1].last 
-#  elsif closest[1]
-#     adj_height =  closest[1].first
-#  else 
-#     puts "something went wrong! please try a different height or shelf qty"
-#  end
-     
-#     adj_height
-# end
 
 def shelf_qty_constraint(height, smallest_shelf_size, largest_shelf_size)
     result = []
@@ -92,14 +60,16 @@ def height_suggester(options_array, height, shelf_qty)
     closest = options_array[shelf_qty.to_i].sort.group_by do |item|
         item <=> height
     end
-    #  p closest
+     p closest
     
     
     if closest[0]
         # p closest[0]
         adj_height_array << closest[-1][-1]
         adj_height_array << closest[0][0]    
-        adj_height_array << closest[1][0]
+        if closest[1]
+            adj_height_array << closest[1][0]
+        end
     elsif closest[-1]
         # p closest[-1]
         adj_height_array << closest[-1][-1]
@@ -161,7 +131,7 @@ if shelf_qty_constraint_array.length > 1
 
     shelves = prompt.slider('Please select shelf qty', min: "#{min_shelf}", max: "#{max_shelf}", step: 1, convert: :int) 
 else
-    shelves = min_shelf
+    shelves = min_shelf.to_i
     prompt.say("only #{min_shelf} shelves available at this height. increase height to add more")
 
 end
@@ -188,25 +158,15 @@ end
 
 
 
-# new_shelves_limit = shelf_qty_constraint(new_height, size_1)
-
-# if shelves.to_i > new_shelves_limit.to_i
-
-#    prompt.yes?("Too many shelves. is #{new_shelves_limit} ok") && new_shelves_select = new_shelves_limit
-
-# else new_shelves_select = shelves
-
-# end
-
 
 
 colour = prompt.select("Choose cabinet colour", %w(black white red natural))
 
 project_hash =  {    
-    height: new_height_select,
-    width: cab_width,
+    height: new_height_select.to_i,
+    width: cab_width.to_i,
     depth: cab_depth.to_i,
-    shelves: shelves,
+    shelves: shelves.to_i,
     cupboards: [],
     drawers: [],
     colour: colour,
@@ -234,31 +194,7 @@ connector: {
 
 total_price = []
 
-# size_1 = 180
-# size_2 = 280
-# size_3 = 380
 
-# array = [size_1,size_2,size_3]
-
-#############
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#############
 
 def cabinet_carcasse_parts_generator(cabinet_height, cabinet_width, cabinet_depth, material_thickness)
 
@@ -324,14 +260,12 @@ def divider_quantity_calculator(cabinet_width)
         return 1
     elsif cabinet_width >= 1200 && cabinet_width <1700
        return 2
-    elsif cabinet_width >= 1700
-        if cabinet_width <2200
+    elsif cabinet_width >= 1700 && cabinet_width <2200        
            return 3
-        end
-    elsif cabinet_width >= 2200
-        if cabinet_width <=2400
+        
+    elsif cabinet_width >= 2200 && cabinet_width <=2400
            return 4
-        end
+        
     end   
     
 end
@@ -360,39 +294,7 @@ def shelf_parts_generator(cabinet_height, cabinet_width, cabinet_depth, material
 
 end
 
-# def height_constraint(height, arr, shelf_qty)
-#     array = []
 
-#     result = []
-    
-#     arr.each do |item|
-#         array << item
-#         array << item
-#         array << item
-#     end
-
-#     all_combinations  = array.combination(shelf_qty+1).to_a
-
-#     all_combinations.each do |item|
-#        result << item.sum
-#     end   
-    
-
-#     closest = result.uniq.sort.group_by do |item|
-#         item <=> height
-#     end
-
-
-#     closest[-1].last || closest[1].first
-     
-    
-# end
-
-# def shelf_qty_constraint(height)
-
-#     ((height-180-180)/180)
-
-# end
 
 def array_joiner(qty_to_join, *arr)
 
@@ -505,7 +407,7 @@ carcasse_parts = cabinet_carcasse_parts_generator(project_hash[:height], project
 
 div_part_size = divider_parts_generator(project_hash[:height],project_hash[:width],project_hash[:depth],project_hash[:material_thickness])
 
-assigned_dividers = part_assigner(2, divider_parts_generator(project_hash[:height],project_hash[:width],project_hash[:depth],project_hash[:material_thickness]))
+assigned_dividers = part_assigner(divider_quantity_calculator(project_hash[:width]), divider_parts_generator(project_hash[:height],project_hash[:width],project_hash[:depth],project_hash[:material_thickness]))
 
 shelf_parts_size = shelf_parts_generator(project_hash[:height],project_hash[:width],project_hash[:depth],project_hash[:material_thickness])
 
@@ -515,7 +417,7 @@ shelf_quantity_constraint = shelf_qty_constraint(project_hash[:height], size_1, 
 
 # assigned_shelf_parts = part_assigner(shelf_qty_constraint(project_hash[:height], size_1,size_3),shelf_parts_generator(project_hash[:height],project_hash[:width],project_hash[:depth],project_hash[:material_thickness]))
 
-assigned_shelf_parts = part_assigner(shelves,shelf_parts_generator(project_hash[:height],project_hash[:width],project_hash[:depth],project_hash[:material_thickness]))
+assigned_shelf_parts = part_assigner(shelves.to_i,shelf_parts_generator(project_hash[:height],project_hash[:width],project_hash[:depth],project_hash[:material_thickness]))
 
 complete_parts_array = array_joiner(3, carcasse_parts, assigned_dividers, assigned_shelf_parts)
 
@@ -565,7 +467,7 @@ plywood_total = sheet_counter(row_array, project_hash[:depth].to_i)
 
 # "full parts list:"
 
-# p complete_parts_array
+p complete_parts_array
 
 # puts "cut list"
 # puts "#{project_hash[:depth]}:#{row_array}"
@@ -577,7 +479,7 @@ plywood_total = sheet_counter(row_array, project_hash[:depth].to_i)
 
 
 def machining_length_estimate(arr)
-    p arr
+    # p arr
     result = arr.map do |item|    
 
         item.values[0..3] 
@@ -655,7 +557,7 @@ final_price = mark_up(3, panel_cost, connector_cost, shelf_support_cost)+ mark_u
 
 puts "cabinet details"
 
-line_0 = project_hash
+line_0 = "#{project_hash}\n"
 
 puts line_0
 
@@ -701,13 +603,14 @@ save = prompt.yes?('Save cabinet details?')
  
 if save  
     File.open('cabinet.csv', "a") do |row|
+        row << "---------------------------------\n"
         row << line_0
-        row << line_01
+        row << "cut list   "+line_01
         row << line_1
         row << line_2
         row << line_3
         row << line_4
-        row << line_6
+        row << "final_price  "+line_6
     end
 else exit
 end

@@ -33,3 +33,33 @@ connector | 4 | 16
 shelf_support | 8 | 8
 Total machining length | 11190 | 200
 $811.7760000000001
+{:height=>940, :width=>1000, :depth=>280, :shelves=>3, :cupboards=>[], :drawers=>[], :colour=>"black", :material_thickness=>18}cut list   width:280| lengths:[[1000, 1000], [964, 964], [964, 904], [904, 904], [904]]plywood | 2 | 200
+connector | 4 | 16
+shelf_support | 8 | 8
+Total machining length | 11190 | 200
+final_price  $811.7760000000001
+{:height=>2400, :width=>1000, :depth=>580, :shelves=>11, :cupboards=>[], :drawers=>[], :colour=>"black", :material_thickness=>18}
+cut list   width:580| lengths:[[2364], [2364], [2364], [2364], [1000, 1000], [964, 964]]plywood | 3 | 300
+connector | 4 | 16
+shelf_support | 8 | 8
+Total machining length | 32226 | 300
+final_price  $1351.3504
+{:height=>2400, :width=>2400, :depth=>580, :shelves=>11, :cupboards=>[], :drawers=>[], :colour=>"red", :material_thickness=>18}
+cut list   width:580| lengths:[[2364], [2364], [2364], [2364], [2364], [2364]]plywood | 3 | 300
+connector | 4 | 16
+shelf_support | 8 | 8
+Total machining length | 50426 | 300
+final_price  $1540.6304
+---------------------------------{:height=>940, :width=>1000, :depth=>280, :shelves=>3, :cupboards=>[], :drawers=>[], :colour=>"black", :material_thickness=>18}
+cut list   width:280| lengths:[[1000, 1000], [964, 964], [964, 904], [904, 904], [904]]plywood | 2 | 200
+connector | 4 | 16
+shelf_support | 8 | 8
+Total machining length | 11190 | 200
+final_price  $811.7760000000001
+---------------------------------
+{:height=>2100, :width=>1750, :depth=>580, :shelves=>9, :cupboards=>[], :drawers=>[], :colour=>"red", :material_thickness=>18}
+cut list   width:580| lengths:[[2064], [2064], [2064], [2064], [2064], [1750]]plywood | 3 | 300
+connector | 4 | 16
+shelf_support | 8 | 8
+Total machining length | 38814 | 300
+final_price  $1417.2656
