@@ -103,13 +103,14 @@ end
 
 
 def height_checker(arr, val)
-
+    result = []
     if arr.include?(val)
-        result = val
-    else result = arr.delete(val)
+        result << val
+    else 
+        result << arr
     end
 
-    result
+    result.flatten
 
 end
 
@@ -126,11 +127,11 @@ cab_width = prompt.ask('please select the width - max 2400', default: 1000, conv
 
 height_input= prompt.ask('please select the preffered cabinet height - max 2400', default: 1000, convert: :int) 
 
-shelf_qty_constraint(height_input, size_1, size_2)
+shelf_qty_constraint_array = shelf_qty_constraint(height_input.to_i, size_1, size_2)
 
-min_shelf = shelf_qty_constraint(height_input, size_1, size_2).first
+min_shelf = shelf_qty_constraint_array.first
 
-max_shelf = shelf_qty_constraint(height_input, size_1, size_2).last
+max_shelf = shelf_qty_constraint_array.last
 
 p min_shelf
 p max_shelf
@@ -141,7 +142,7 @@ new_height = height_suggester(shelf_combo_array, array, shelves)
 
 available_height = height_checker(new_height, height_input)
 
-choices = {available_height[0] => 1, available_height[1] => 2}
+choices = {available_height[0]=>  1, available_height[1]=> 2}
 
 if available_height != height_input
     
