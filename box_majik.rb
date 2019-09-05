@@ -11,79 +11,157 @@ size_3 = 380
 
 array = [size_1,size_2,size_3]
 
-def height_constraint(height, arr, shelf_qty)
-    array = []
+# def height_constraint(height, arr, shelf_qty)
+#     array = []
 
-    result = []
+#     result = []
     
-    arr.each do |item|
-        1.times do
-            array << item
+#     arr.each do |item|
+#         1.times do
+#             array << item
+#         end
+#     end
+
+
+#     all_combinations  = array.repeated_combination(shelf_qty+1).uniq.to_a
+#     # p all_combinations
+#     all_combinations.each do |item|
+#        result << item.sum
+#     end   
+#     # result
+
+#     closest = result.uniq.sort.group_by do |item|
+#         item <=> height
+#     end
+
+#  p closest
+
+#  if closest[-1]
+#     adj_height =  closest[-1].last 
+#  elsif closest[1]
+#     adj_height =  closest[1].first
+#  else 
+#     puts "something went wrong! please try a different height or shelf qty"
+#  end
+     
+#     adj_height
+# end
+
+def shelf_qty_constraint(height, smallest_shelf_size, largest_shelf_size)
+
+    max = (height.to_f-(smallest_shelf_size*2))/smallest_shelf_size
+    min = height.to_f/largest_shelf_size
+    result = min.ceil..max.floor
+    result.to_a
+end
+
+def generate_all_combinations(array, max)
+    result  = []
+    result_array = []
+
+    (1..max.to_i).each do |i|
+        array.repeated_permutation(i).to_a.each do |i|
+            result << i.sum
         end
+        result_array << result.flatten.uniq.delete_if { |i| i > 2400 }
+        
     end
+    result_array
+end
 
+shelf_combo_array = generate_all_combinations(array, 12)
 
-    all_combinations  = array.repeated_combination(shelf_qty+1).uniq.to_a
-    # p all_combinations
-    all_combinations.each do |item|
-       result << item.sum
-    end   
-    # result
+def height_suggester(options_array, height, shelf_qty)  
 
-    closest = result.uniq.sort.group_by do |item|
+    adj_height_array=[]
+    
+    closest = options_array[shelf_qty.to_i].sort.group_by do |item|
         item <=> height
     end
-
- p closest
-
- if closest[-1]
-    adj_height =  closest[-1].last 
- elsif closest[1]
-    adj_height =  closest[1].first
- else 
-    puts "something went wrong! please try a different height or shelf qty"
- end
-     
-    adj_height
-end
-
-def shelf_qty_constraint(height, smallest_shelf_size)
-
-    (height-(smallest_shelf_size*2))/smallest_shelf_size
-
-end
-
-
-
-
-puts "Welcome to Box Majik"
-
-
-prompt.keypress("Press space or enter to continue", keys: [:space, :return])
-
-
-cab_depth = prompt.select("Choose cabinet depth", %w(280 380 580), convert: :int)
-
-cab_width = prompt.ask('cab width?', default: 1000, convert: :int)
-
-
-height_input= prompt.ask('cab_height?', default: 1000, convert: :int) 
-
-new_height = height_constraint(height_input.to_i, array, shelf_qty_constraint(height_input, size_1))
+     p closest
     
-new_height_select = prompt.yes?("height not available, is #{new_height} ok?" )
+    
+    if closest[0]
+        adj_height_array << closest[-1].last
+        adj_height_array << closest[0][0]    
+        adj_height_array << closest[1].first
+    elsif closest[-1]
+        adj_height_array << closest[-1].last
+        adj_height_array << closest[-1][-1]
+        adj_height_array << closest[1].first
+        adj_height_array << closest[1][1]
+    elsif closest[1]
+        adj_height << closest[1].first
+        adj_height << closest[1][1]
+    else
+        puts "error"
+    end
+    
+    adj_height_array.uniq.delete_if {|i| i==nil}
+    
+end
 
-shelves = prompt.ask('shelf qty?', default: 0, convert: :int) 
 
-new_shelves_limit = shelf_qty_constraint(new_height)
+def height_checker(arr, val)
 
-if shelves.to_i > new_shelves_limit.to_i
+    if arr.include?(val)
+        result = val
+    else result = arr.delete(val)
+    end
 
-   prompt.yes?("Too many shelves. is #{new_shelves} ok") && new_shelves_select = new_shelves_limit
-
-else new_shelves_select = shelves
+    result
 
 end
+
+
+
+
+prompt.keypress("Welcome to Box Majik. Press space or enter to continue", keys: [:space, :return])
+
+cab_depth = prompt.select("Please select the depth of your cabinet", %w(280 380 580), convert: :int)
+
+cab_width = 0
+
+cab_width = prompt.ask('please select the width - max 2400', default: 1000, convert: :int)
+
+height_input= prompt.ask('please select the preffered cabinet height - max 2400', default: 1000, convert: :int) 
+
+shelf_qty_constraint(height_input, size_1, size_2)
+
+min_shelf = shelf_qty_constraint(height_input, size_1, size_2).first
+
+max_shelf = shelf_qty_constraint(height_input, size_1, size_2).last
+
+p min_shelf
+p max_shelf
+
+shelves = prompt.slider('Please select shelf qty', min: min_shelf, max: max_shelf, step: 1, convert: :int) 
+
+new_height = height_suggester(shelf_combo_array, array, shelves)
+
+available_height = height_checker(new_height, height_input)
+
+choices = {available_height[0] => 1, available_height[1] => 2}
+
+if available_height != height_input
+    
+new_height_select = prompt.select("height not available. please select from:", choices, convert: :int )
+
+else new_height_select = height_input
+
+end
+
+
+
+# new_shelves_limit = shelf_qty_constraint(new_height, size_1)
+
+# if shelves.to_i > new_shelves_limit.to_i
+
+#    prompt.yes?("Too many shelves. is #{new_shelves_limit} ok") && new_shelves_select = new_shelves_limit
+
+# else new_shelves_select = shelves
+
+# end
 
 
 
@@ -219,9 +297,7 @@ def divider_quantity_calculator(cabinet_width)
         if cabinet_width <=2400
            return 4
         end
-    end
-
-    
+    end   
     
 end
 
@@ -398,11 +474,11 @@ assigned_dividers = part_assigner(2, divider_parts_generator(project_hash[:heigh
 
 shelf_parts_size = shelf_parts_generator(project_hash[:height],project_hash[:width],project_hash[:depth],project_hash[:material_thickness])
 
-shelf_quantity_constraint = shelf_qty_constraint(project_hash[:height])
+shelf_quantity_constraint = shelf_qty_constraint(project_hash[:height], size_1)
 
 adjusted_height =  height_constraint(project_hash[:height], array, shelf_quantity_constraint)
 
-assigned_shelf_parts = part_assigner(shelf_qty_constraint(project_hash[:height]),shelf_parts_generator(project_hash[:height],project_hash[:width],project_hash[:depth],project_hash[:material_thickness]))
+assigned_shelf_parts = part_assigner(shelf_qty_constraint(project_hash[:height], size_1),shelf_parts_generator(project_hash[:height],project_hash[:width],project_hash[:depth],project_hash[:material_thickness]))
 
 complete_parts_array = array_joiner(3, carcasse_parts, assigned_dividers, assigned_shelf_parts)
 
@@ -414,7 +490,7 @@ part_length_array = value_extractor(complete_parts_array, project_hash[:length])
 
 row_array = row_builder(part_length_array)
 
-plywood_total = sheet_counter(row_array, project_hash[:depth])
+plywood_total = sheet_counter(row_array, project_hash[:depth].to_i)
 
 # p part_length_array
 
