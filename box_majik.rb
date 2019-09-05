@@ -17,31 +17,39 @@ def height_constraint(height, arr, shelf_qty)
     result = []
     
     arr.each do |item|
-        array << item
-        array << item
-        array << item
+        1.times do
+            array << item
+        end
     end
 
-    all_combinations  = array.combination(shelf_qty+1).to_a
 
+    all_combinations  = array.repeated_combination(shelf_qty+1).uniq.to_a
+    # p all_combinations
     all_combinations.each do |item|
        result << item.sum
     end   
-    
+    # result
 
     closest = result.uniq.sort.group_by do |item|
         item <=> height
     end
 
+ p closest
 
-    closest[-1].last || closest[1].first
+ if closest[-1]
+    adj_height =  closest[-1].last 
+ elsif closest[1]
+    adj_height =  closest[1].first
+ else 
+    puts "something went wrong! please try a different height or shelf qty"
+ end
      
-    
+    adj_height
 end
 
 def shelf_qty_constraint(height, smallest_shelf_size)
 
-    (height-(smallest_shelf_size*2))/-smallest_shelf_size
+    (height-(smallest_shelf_size*2))/smallest_shelf_size
 
 end
 
