@@ -48,11 +48,18 @@ array = [size_1,size_2,size_3]
 # end
 
 def shelf_qty_constraint(height, smallest_shelf_size, largest_shelf_size)
-
-    max = (height.to_f-(smallest_shelf_size*2))/smallest_shelf_size
-    min = height.to_f/largest_shelf_size
-    result = min.ceil..max.floor
-    result.to_a
+    result = []
+    height = height
+    max = (height-(smallest_shelf_size*2))/smallest_shelf_size
+    min = (height/largest_shelf_size)
+    # p min
+    # p max
+    if max == min
+        result << max
+    else        
+        result << (min..max).to_a
+    end
+    result.flatten
 end
 
 def generate_all_combinations(array, max)
@@ -74,21 +81,21 @@ shelf_combo_array = generate_all_combinations(array, 12)
 def height_suggester(options_array, height, shelf_qty)  
 
     adj_height_array=[]
-    
+    p height
     closest = options_array[shelf_qty.to_i].sort.group_by do |item|
         item <=> height
     end
-     p closest
+    #  p closest
     
     
     if closest[0]
-        adj_height_array << closest[-1].last
-        adj_height_array << closest[0][0]    
-        adj_height_array << closest[1].first
-    elsif closest[-1]
-        adj_height_array << closest[-1].last
         adj_height_array << closest[-1][-1]
-        adj_height_array << closest[1].first
+        adj_height_array << closest[0][0]    
+        adj_height_array << closest[1][0]
+    elsif closest[-1]
+        adj_height_array << closest[-1][-1]
+        adj_height_array << closest[-1][-2]
+        adj_height_array << closest[1][0]
         adj_height_array << closest[1][1]
     elsif closest[1]
         adj_height << closest[1].first
@@ -125,28 +132,44 @@ cab_width = 0
 
 cab_width = prompt.ask('please select the width - max 2400', default: 1000, convert: :int)
 
-height_input= prompt.ask('please select the preffered cabinet height - max 2400', default: 1000, convert: :int) 
+height_input = prompt.ask('please select the preffered cabinet height - max 2400', default: 1000, convert: :int) 
+# p height_input
 
-shelf_qty_constraint_array = shelf_qty_constraint(height_input.to_i, size_1, size_2)
+shelf_qty_constraint_array = shelf_qty_constraint(height_input, size_1, size_2)
+
+# p shelf_qty_constraint_array
 
 min_shelf = shelf_qty_constraint_array.first
 
 max_shelf = shelf_qty_constraint_array.last
 
-p min_shelf
-p max_shelf
+# p min_shelf
+# p max_shelf
 
-shelves = prompt.slider('Please select shelf qty', min: min_shelf, max: max_shelf, step: 1, convert: :int) 
+if shelf_qty_constraint_array.length > 1
 
-new_height = height_suggester(shelf_combo_array, array, shelves)
+    shelves = prompt.slider('Please select shelf qty', min: "#{min_shelf}", max: "#{max_shelf}", step: 1, convert: :int) 
+else
+    shelves = min_shelf
+    prompt.say("only #{min_shelf} shelves available at this height. increase height to add more")
+
+end
+
+# p shelf_combo_array
+
+new_height = height_suggester(shelf_combo_array, height_input, shelves)
+
+p new_height
 
 available_height = height_checker(new_height, height_input)
+
+p available_height
 
 choices = {available_height[0]=>  1, available_height[1]=> 2}
 
 if available_height != height_input
     
-new_height_select = prompt.select("height not available. please select from:", choices, convert: :int )
+    new_height_select = prompt.select("height not available. please select from:", choices, convert: :int )
 
 else new_height_select = height_input
 
@@ -169,10 +192,10 @@ end
 colour = prompt.select("Choose cabinet colour", %w(black white red natural))
 
 project_hash =  {    
-    height: new_height.to_i,
-    width: cab_width.to_i,
-    depth: cab_depth.to_i,
-    shelves: new_shelves_select ,
+    height: new_height,
+    width: cab_width,
+    depth: cab_depth,
+    shelves: shelves,
     cupboards: [],
     drawers: [],
     colour: colour,
