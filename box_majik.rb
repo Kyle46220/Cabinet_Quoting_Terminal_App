@@ -338,7 +338,7 @@ end
 
 def part_assigner(part_qty, method)
     result = []
-    p part_qty
+    part_qty.to_i
     part_qty.times do
       result  << method
     end
@@ -659,21 +659,56 @@ puts project_hash
 
 puts "BOM"
  
-puts "#{materials_list[:plywood][:name]} | #{plywood_total} | #{panel_cost}"
-puts "#{materials_list[:connector][:name]} | #{connector_qty} | #{connector_cost}"
-puts "#{materials_list[:shelf_support][:name]} | #{shelf_support_qty} | #{shelf_support_cost}"
-puts "Total machining length | #{total_machining_length} | #{panel_cost}"
-puts "Total handling  | #{total_pieces} | #{price_calculator(total_pieces, handling_fee_per_piece)}"
+line_1 =  "#{materials_list[:plywood][:name]} | #{plywood_total} | #{panel_cost}\n"
 
+puts line_1
+line_2 = "#{materials_list[:connector][:name]} | #{connector_qty} | #{connector_cost}\n"
+puts line_2
 
+line_3 = "#{materials_list[:shelf_support][:name]} | #{shelf_support_qty} | #{shelf_support_cost}\n"
+puts line_3
 
+line_4 = "Total machining length | #{total_machining_length} | #{panel_cost}\n"
+puts line_4
 
-
-    
+line_5 = "Total handling  | #{total_pieces} | #{price_calculator(total_pieces, handling_fee_per_piece)}\n"
+puts line_5
+   
 puts "final price:"
 
 
-puts "$#{final_price}"
+line_6 = "$#{final_price}\n"
+
+puts line_6
+
+save = prompt.yes?('Save cabinet details?')
+
+require 'csv'
+
+csv_text = File.read('cabinet.csv','a')
+
+csv = CSV.parse(csv_text, :headers => false)
+
+ 
+if save    
+    csv.each do |row|
+        row << line_1
+        row << line_2
+        row << line_3
+        row << line_4
+        row << line_6
+    end
+else exit
+end
+
+
+
+
+
+
+
+
+
 
 
 
