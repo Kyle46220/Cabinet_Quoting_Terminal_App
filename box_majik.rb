@@ -81,7 +81,14 @@ shelf_combo_array = generate_all_combinations(array, 12)
 def height_suggester(options_array, height, shelf_qty)  
 
     adj_height_array=[]
-    p height
+
+    # p options_array
+    # p height
+
+    # if height < 500
+
+    #     adj_height_array << 360
+
     closest = options_array[shelf_qty.to_i].sort.group_by do |item|
         item <=> height
     end
@@ -89,17 +96,21 @@ def height_suggester(options_array, height, shelf_qty)
     
     
     if closest[0]
+        # p closest[0]
         adj_height_array << closest[-1][-1]
         adj_height_array << closest[0][0]    
         adj_height_array << closest[1][0]
     elsif closest[-1]
+        # p closest[-1]
         adj_height_array << closest[-1][-1]
         adj_height_array << closest[-1][-2]
-        adj_height_array << closest[1][0]
-        adj_height_array << closest[1][1]
-    elsif closest[1]
-        adj_height << closest[1].first
-        adj_height << closest[1][1]
+        adj_height_array << closest[-1][-3]
+        # adj_height_array << closest[1][1]
+            if closest[1]
+                # p closest[1]
+                adj_height_array << closest[1][0]
+                adj_height_array << closest[1][1]
+            end
     else
         puts "error"
     end
@@ -128,7 +139,7 @@ prompt.keypress("Welcome to Box Majik. Press space or enter to continue", keys: 
 
 cab_depth = prompt.select("Please select the depth of your cabinet", %w(280 380 580), convert: :int)
 
-cab_width = 0
+# cab_width = 0
 
 cab_width = prompt.ask('please select the width - max 2400', default: 1000, convert: :int)
 
@@ -159,17 +170,17 @@ end
 
 new_height = height_suggester(shelf_combo_array, height_input, shelves)
 
-p new_height
+# p new_height
 
 available_height = height_checker(new_height, height_input)
 
-p available_height
+puts available_height
 
-choices = {available_height[0]=>  1, available_height[1]=> 2}
+# choices = {available_height[0]=>  1, available_height[1]=> 2, available_height[2]=> 3}
 
 if available_height != height_input
     
-    new_height_select = prompt.select("height not available. please select from:", choices, convert: :int )
+    new_height_select = prompt.select("height not available. please select from:", available_height, convert: :int )
 
 else new_height_select = height_input
 
@@ -192,9 +203,9 @@ end
 colour = prompt.select("Choose cabinet colour", %w(black white red natural))
 
 project_hash =  {    
-    height: new_height,
+    height: new_height_select,
     width: cab_width,
-    depth: cab_depth,
+    depth: cab_depth.to_i,
     shelves: shelves,
     cupboards: [],
     drawers: [],
@@ -254,7 +265,7 @@ def cabinet_carcasse_parts_generator(cabinet_height, cabinet_width, cabinet_dept
     carcasse_array = []
 
     two_times_thk = material_thickness*2
-
+ p cabinet_height
     side_length = cabinet_height - two_times_thk
 
     top =  {
@@ -327,6 +338,7 @@ end
 
 def part_assigner(part_qty, method)
     result = []
+    p part_qty
     part_qty.times do
       result  << method
     end
@@ -498,11 +510,13 @@ assigned_dividers = part_assigner(2, divider_parts_generator(project_hash[:heigh
 
 shelf_parts_size = shelf_parts_generator(project_hash[:height],project_hash[:width],project_hash[:depth],project_hash[:material_thickness])
 
-shelf_quantity_constraint = shelf_qty_constraint(project_hash[:height], size_1)
+shelf_quantity_constraint = shelf_qty_constraint(project_hash[:height], size_1, size_3)
 
-adjusted_height =  height_constraint(project_hash[:height], array, shelf_quantity_constraint)
+# adjusted_height =  height_constraint(project_hash[:height], array, shelf_quantity_constraint)
 
-assigned_shelf_parts = part_assigner(shelf_qty_constraint(project_hash[:height], size_1),shelf_parts_generator(project_hash[:height],project_hash[:width],project_hash[:depth],project_hash[:material_thickness]))
+# assigned_shelf_parts = part_assigner(shelf_qty_constraint(project_hash[:height], size_1,size_3),shelf_parts_generator(project_hash[:height],project_hash[:width],project_hash[:depth],project_hash[:material_thickness]))
+
+assigned_shelf_parts = part_assigner(shelves,shelf_parts_generator(project_hash[:height],project_hash[:width],project_hash[:depth],project_hash[:material_thickness]))
 
 complete_parts_array = array_joiner(3, carcasse_parts, assigned_dividers, assigned_shelf_parts)
 
@@ -562,7 +576,7 @@ plywood_total = sheet_counter(row_array, project_hash[:depth].to_i)
 
 
 def machining_length_estimate(arr)
- 
+    p arr
     result = arr.map do |item|    
 
         item.values[0..3] 
