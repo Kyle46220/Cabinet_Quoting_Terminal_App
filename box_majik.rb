@@ -296,8 +296,8 @@ end
 
 
 
-def array_joiner(qty_to_join, *arr)
-
+def array_joiner(*arr)
+    p arr
     array = []        
     array << arr
     array.flatten.flatten
@@ -419,7 +419,7 @@ shelf_quantity_constraint = shelf_qty_constraint(project_hash[:height], size_1, 
 
 assigned_shelf_parts = part_assigner(shelves.to_i,shelf_parts_generator(project_hash[:height],project_hash[:width],project_hash[:depth],project_hash[:material_thickness]))
 
-complete_parts_array = array_joiner(3, carcasse_parts, assigned_dividers, assigned_shelf_parts)
+complete_parts_array = array_joiner(carcasse_parts, assigned_dividers, assigned_shelf_parts)
 
 divider_quantity = divider_quantity_calculator(project_hash[:width])
 
