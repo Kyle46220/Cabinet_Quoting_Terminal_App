@@ -527,7 +527,7 @@ part_length_array = value_extractor(complete_parts_array, project_hash[:length])
 
 row_array = row_builder(part_length_array)
 
-p row_array
+# p row_array
 
 plywood_total = sheet_counter(row_array, project_hash[:depth].to_i)
 
@@ -655,7 +655,16 @@ final_price = mark_up(3, panel_cost, connector_cost, shelf_support_cost)+ mark_u
 
 puts "cabinet details"
 
-puts project_hash
+line_0 = project_hash
+
+puts line_0
+
+puts "cut list"
+
+
+line_01 =  "width:#{project_hash[:depth]}| lengths:#{row_array}"
+
+puts line_01
 
 puts "BOM"
  
@@ -692,6 +701,8 @@ save = prompt.yes?('Save cabinet details?')
  
 if save  
     File.open('cabinet.csv', "a") do |row|
+        row << line_0
+        row << line_01
         row << line_1
         row << line_2
         row << line_3

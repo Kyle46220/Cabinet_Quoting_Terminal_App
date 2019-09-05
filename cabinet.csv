@@ -3,3 +3,33 @@ connector | 4 | 16
 shelf_support | 8 | 8
 Total machining length | 11190 | 200
 $811.7760000000001
+plywood | 2 | 200
+connector | 4 | 16
+shelf_support | 8 | 8
+Total machining length | 11190 | 200
+$811.7760000000001
+plywood | 2 | 200
+connector | 4 | 16
+shelf_support | 8 | 8
+Total machining length | 11190 | 200
+$811.7760000000001
+plywood | 2 | 200
+connector | 4 | 16
+shelf_support | 8 | 8
+Total machining length | 11510 | 200
+$815.104
+plywood | 2 | 200
+connector | 4 | 16
+shelf_support | 8 | 8
+Total machining length | 11510 | 200
+$815.104
+{:height=>940, :width=>1000, :depth=>280, :shelves=>3, :cupboards=>[], :drawers=>[], :colour=>"black", :material_thickness=>18}plywood | 2 | 200
+connector | 4 | 16
+shelf_support | 8 | 8
+Total machining length | 11190 | 200
+$811.7760000000001
+{:height=>840, :width=>1000, :depth=>580, :shelves=>3, :cupboards=>[], :drawers=>[], :colour=>"black", :material_thickness=>18}{:height=>940, :width=>1000, :depth=>280, :shelves=>3, :cupboards=>[], :drawers=>[], :colour=>"black", :material_thickness=>18}width:280| lengths:[[1000, 1000], [964, 964], [964, 904], [904, 904], [904]]plywood | 2 | 200
+connector | 4 | 16
+shelf_support | 8 | 8
+Total machining length | 11190 | 200
+$811.7760000000001
