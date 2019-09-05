@@ -683,15 +683,15 @@ puts line_6
 
 save = prompt.yes?('Save cabinet details?')
 
-require 'csv'
+# require 'csv'
 
-csv_text = File.read('cabinet.csv','a')
+# csv_text = File.open('cabinet.csv', "a")
 
-csv = CSV.parse(csv_text, :headers => false)
+# csv = CSV.parse(csv_text, :headers => false)
 
  
-if save    
-    csv.each do |row|
+if save  
+    File.open('cabinet.csv', "a") do |row|
         row << line_1
         row << line_2
         row << line_3
