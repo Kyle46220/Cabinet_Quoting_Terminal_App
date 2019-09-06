@@ -1,79 +1,116 @@
-plywood | 2 | 200
-connector | 4 | 16
-shelf_support | 8 | 8
-Total machining length | 11190 | 200
-$811.7760000000001
-plywood | 2 | 200
-connector | 4 | 16
-shelf_support | 8 | 8
-Total machining length | 11190 | 200
-$811.7760000000001
-plywood | 2 | 200
-connector | 4 | 16
-shelf_support | 8 | 8
-Total machining length | 11190 | 200
-$811.7760000000001
-plywood | 2 | 200
-connector | 4 | 16
-shelf_support | 8 | 8
-Total machining length | 11510 | 200
-$815.104
-plywood | 2 | 200
-connector | 4 | 16
-shelf_support | 8 | 8
-Total machining length | 11510 | 200
-$815.104
-{:height=>940, :width=>1000, :depth=>280, :shelves=>3, :cupboards=>[], :drawers=>[], :colour=>"black", :material_thickness=>18}plywood | 2 | 200
-connector | 4 | 16
-shelf_support | 8 | 8
-Total machining length | 11190 | 200
-$811.7760000000001
-{:height=>840, :width=>1000, :depth=>580, :shelves=>3, :cupboards=>[], :drawers=>[], :colour=>"black", :material_thickness=>18}{:height=>940, :width=>1000, :depth=>280, :shelves=>3, :cupboards=>[], :drawers=>[], :colour=>"black", :material_thickness=>18}width:280| lengths:[[1000, 1000], [964, 964], [964, 904], [904, 904], [904]]plywood | 2 | 200
-connector | 4 | 16
-shelf_support | 8 | 8
-Total machining length | 11190 | 200
-$811.7760000000001
-{:height=>940, :width=>1000, :depth=>280, :shelves=>3, :cupboards=>[], :drawers=>[], :colour=>"black", :material_thickness=>18}cut list   width:280| lengths:[[1000, 1000], [964, 964], [964, 904], [904, 904], [904]]plywood | 2 | 200
-connector | 4 | 16
-shelf_support | 8 | 8
-Total machining length | 11190 | 200
-final_price  $811.7760000000001
-{:height=>2400, :width=>1000, :depth=>580, :shelves=>11, :cupboards=>[], :drawers=>[], :colour=>"black", :material_thickness=>18}
-cut list   width:580| lengths:[[2364], [2364], [2364], [2364], [1000, 1000], [964, 964]]plywood | 3 | 300
-connector | 4 | 16
-shelf_support | 8 | 8
-Total machining length | 32226 | 300
-final_price  $1351.3504
-{:height=>2400, :width=>2400, :depth=>580, :shelves=>11, :cupboards=>[], :drawers=>[], :colour=>"red", :material_thickness=>18}
-cut list   width:580| lengths:[[2364], [2364], [2364], [2364], [2364], [2364]]plywood | 3 | 300
-connector | 4 | 16
-shelf_support | 8 | 8
-Total machining length | 50426 | 300
-final_price  $1540.6304
----------------------------------{:height=>940, :width=>1000, :depth=>280, :shelves=>3, :cupboards=>[], :drawers=>[], :colour=>"black", :material_thickness=>18}
-cut list   width:280| lengths:[[1000, 1000], [964, 964], [964, 904], [904, 904], [904]]plywood | 2 | 200
-connector | 4 | 16
-shelf_support | 8 | 8
-Total machining length | 11190 | 200
-final_price  $811.7760000000001
+["-d"]
+2019-09-06T17:05:37+10:00
 ---------------------------------
-{:height=>2100, :width=>1750, :depth=>580, :shelves=>9, :cupboards=>[], :drawers=>[], :colour=>"red", :material_thickness=>18}
-cut list   width:580| lengths:[[2064], [2064], [2064], [2064], [2064], [1750]]plywood | 3 | 300
-connector | 4 | 16
-shelf_support | 8 | 8
-Total machining length | 38814 | 300
-final_price  $1417.2656
+["-d"]{:height=>940, :width=>1000, :depth=>280, :shelves=>3, :cupboards=>[], :drawers=>[], :colour=>"black", :material_thickness=>18}
+cut list:width:280| lengths:[[1000, 1000], [964, 964], [964, 904], [904, 904]]
+plywood | Qty:1 | $100
+connector | Qty:4 | $16
+shelf_support | Qty:8 | $8
+Total machining length | Qty(mm):9988 | $100
+final_price: $496.6752
+
 ---------------------------------
-[nil]{:height=>1780, :width=>1600, :depth=>380, :shelves=>7, :cupboards=>[], :drawers=>[], :colour=>"red", :material_thickness=>18}
-cut list   width:380| lengths:[[1744], [1744], [1744], [1744], [1600], [1600]]plywood | 2 | 200
-connector | 4 | 16
-shelf_support | 8 | 8
-Total machining length | 26298 | 200
-final_price  $979.2992
+["-d"]
+2019-09-06T17:11:08+10:00
 ---------------------------------
-[nil]{:height=>1800, :width=>1600, :depth=>380, :shelves=>8, :cupboards=>[], :drawers=>[], :colour=>"red", :material_thickness=>18}
-cut list   width:380| lengths:[[1764], [1764], [1764], [1764], [1600], [1600]]plywood | 2 | 200
-connector | 4 | 16
-shelf_support | 8 | 8
-Total machining length | 28340 | 200
-final_price  $1003.136
+["-d"]{:height=>940, :width=>1000, :depth=>280, :shelves=>3, :cupboards=>[], :drawers=>[], :colour=>"black", :material_thickness=>18}
+cut list:width:280| lengths:[[1000, 1000], [964, 964], [964, 904], [904, 904]]
+plywood | Qty:1 | $100
+connector | Qty:4 | $16
+shelf_support | Qty:8 | $8
+Total machining length | Qty(mm):9988 | $100
+final_price: $496.6752 
+
+---------------------------------
+["Kyle"]
+---------------------------------
+["Kyle"]{:height=>940, :width=>1000, :depth=>280, :shelves=>3, :cupboards=>[], :drawers=>[], :colour=>"black", :material_thickness=>18}
+cut list:width:280| lengths:[[1000, 1000], [964, 964], [964, 904], [904, 904]]
+plywood | Qty:1 | $100
+connector | Qty:4 | $16
+shelf_support | Qty:8 | $8
+Total machining length | Qty(mm):9988 | $100
+final_price: $496.6752
+
+---------------------------------
+["Kyle"]
+---------------------------------
+["Kyle"]{:height=>940, :width=>1000, :depth=>280, :shelves=>3, :cupboards=>[], :drawers=>[], :colour=>"black", :material_thickness=>18}
+cut list:width:280| lengths:[[1000, 1000], [964, 964], [964, 904], [904, 904]]
+plywood | Qty:1 | $100
+connector | Qty:4 | $16
+shelf_support | Qty:8 | $8
+Total machining length | Qty(mm):9988 | $100
+final_price: $496.6752
+
+---------------------------------
+["Kyle"]
+---------------------------------
+2019-09-06T17:31:58+10:00["Kyle"]{:height=>940, :width=>1000, :depth=>280, :shelves=>3, :cupboards=>[], :drawers=>[], :colour=>"black", :material_thickness=>18}
+cut list:width:280| lengths:[[1000, 1000], [964, 964], [964, 904], [904, 904]]
+plywood | Qty:1 | $100
+connector | Qty:4 | $16
+shelf_support | Qty:8 | $8
+Total machining length | Qty(mm):9988 | $100
+final_price: $496.6752
+
+---------------------------------
+["Kyle"]
+---------------------------------
+2019-09-06T17:32:13+10:00["Kyle"]{:height=>940, :width=>1000, :depth=>280, :shelves=>3, :cupboards=>[], :drawers=>[], :colour=>"black", :material_thickness=>18}
+cut list:width:280| lengths:[[1000, 1000], [964, 964], [964, 904], [904, 904]]
+plywood | Qty:1 | $100
+connector | Qty:4 | $16
+shelf_support | Qty:8 | $8
+Total machining length | Qty(mm):9988 | $100
+final_price: $496.6752
+
+---------------------------------
+["Kyle"]
+---------------------------------
+2019-09-06T17:39:37+10:00
+["Kyle"]{:height=>940, :width=>1000, :depth=>280, :shelves=>3, :cupboards=>[], :drawers=>[], :colour=>"black", :material_thickness=>18}
+cut list:width:280| lengths:[[1000, 1000], [964, 964], [964, 904], [904, 904]]
+plywood | Qty:1 | $100
+connector | Qty:4 | $16
+shelf_support | Qty:8 | $8
+Total machining length | Qty(mm):9988 | $100
+final_price: $496.6752
+
+---------------------------------
+["Kyle"]
+---------------------------------
+2019-09-06T17:44:58+10:00
+["Kyle"]{:height=>940, :width=>1000, :depth=>280, :shelves=>3, :cupboards=>[], :drawers=>[], :colour=>"black", :material_thickness=>18}
+cut list:width:280| lengths:[[1000, 1000], [964, 964], [964, 904], [904, 904]]
+plywood | Qty:1 | $100
+connector | Qty:4 | $16
+shelf_support | Qty:8 | $8
+Total machining length | Qty(mm):9988 | $100
+final_price: $496.6752
+
+---------------------------------
+["Kyle"]
+---------------------------------
+2019-09-06T17:45:43+10:00
+["Kyle"]{:height=>940, :width=>1000, :depth=>280, :shelves=>3, :cupboards=>[], :drawers=>[], :colour=>"black", :material_thickness=>18}
+cut list:width:280| lengths:[[1000, 1000], [964, 964], [964, 904], [904, 904]]
+plywood | Qty:1 | $100
+[0;94;49mconnector[0m | Qty:4 | $16
+[0;94;49mshelf_support[0m | Qty:8 | $8
+[0;94;49mTotal machining length[0m | Qty(mm):9988 | $100
+final_price: $496.6752
+
+---------------------------------
+["Kyle"]
+---------------------------------
+2019-09-06T17:46:53+10:00
+["Kyle"]{:height=>940, :width=>1000, :depth=>280, :shelves=>3, :cupboards=>[], :drawers=>[], :colour=>"black", :material_thickness=>18}
+cut list:width:280| lengths:[[1000, 1000], [964, 964], [964, 904], [904, 904]]
+plywood | Qty:1 | $100
+connector | Qty:4 | $16
+shelf_support | Qty:8 | $8
+Total machining length | Qty(mm):9988 | $100
+final_price: $496.6752
+
+---------------------------------

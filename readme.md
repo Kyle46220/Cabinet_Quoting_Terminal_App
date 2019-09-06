@@ -1,4 +1,6 @@
-##Purpose and Scope##
+
+
+## Purpose and Scope
 
 The aim of this app is to provide accurate quotes for a simple cabinet design, taking inputs for dimensions, materials choice, and functional configuration from the user, and providing a cost, and providing a final price. 
 
@@ -7,7 +9,7 @@ This app is tartgeted at tradesmen and manufactures with a need to generate quot
 It provides a way to quickly and reliably generate quotes, based on a few inputs from a customer. this saves time for the user, compared to generating quotes manually, meaning that user can get quotes to the customer more quickly, and spend less time on non-billable work. 
 
 
-##Features##
+## Features
 
 
 1. The app takes user input to choose from 3 set cabinet depths: 280mm, 380mm, 580mm. This allows the flexibility to quote anything from a small single shelf, to an entire wardrobe. 
@@ -22,20 +24,46 @@ It provides a way to quickly and reliably generate quotes, based on a few inputs
 
 
 
-#User experience and interaction##
+# User experience and interaction
 
 The app is very simple to use. Taking inputs for depth, width and height, shelf quantity from the user with a simple prompt, adjusting and confirming these adjustments to suit the constraints mentioned above. Once calculated, the outputs will be displayed to the screen and the user is asked whether or not they would like to save the results to file. 
 
 To install the app 
 
-1. have ruby installed
-2. clone repository
+1. Have ruby installed 
+2. Clone repository
+```
+git clone git@github.com:Kyle46220/Cabinet_Quoting_Terminal_App.git
+```
 3. cd to repo directory
-4. run build.sh script
-5. cd to dist
-6. run file with the options for customer name, date-stamp, and project/customer name. 
 
-## control flow diagram ##
+4. run build.sh script
+```
+bash build.sh
+```
+5. cd to dist
+ ```
+ cd dist
+ ```
+6. run file 
+```
+ruby FAB_CABS.rb
+```
+7. To add a customer name or reference to the file - 
+```
+ruby FAB_CABS.rb reference_or_customer_name
+```
+8. Enjoy
+
+## control flow diagram 
+
+<img src="Simple Flow Chart Diagram.jpeg"
+alt = "Simple Flow Chart Diagram"
+style = "width: 90%;"/>
+
+<img src="Terminal App Flow Chart.jpeg"
+alt = "Simple Flow Chart Diagram"
+style = "width: 90%;"/>
 
 ![Simple Flow Chart](https://drive.google.com/file/d/1mpOWcXPhmR52eWyxqzTESFG1nXol84Qe/view "Simple Flow Chart")
 ![Comprehensive Flow Chart](https://drive.google.com/file/d/1mhxx3YJgqR4HU7sXeVny3iEoGx1fbX9j/view "Comprehensive Flow Chart")
