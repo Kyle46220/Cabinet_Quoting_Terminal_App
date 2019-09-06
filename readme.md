@@ -26,7 +26,9 @@ It provides a way to quickly and reliably generate quotes, based on a few inputs
 
 # User experience and interaction
 
-The app is very simple to use. Taking inputs for depth, width and height, shelf quantity from the user with a simple prompt, adjusting and confirming these adjustments to suit the constraints mentioned above. Once calculated, the outputs will be displayed to the screen and the user is asked whether or not they would like to save the results to file. 
+The app is very simple to use. Taking inputs for depth, width and height, shelf quantity from the user with a simple prompt, adjusting and confirming these adjustments to suit the constraints mentioned above. Once calculated, the outputs will be displayed to the screen and the user is asked whether or not they would like to save the results to file. There is no other way to use the app. 
+
+
 
 To install the app 
 
