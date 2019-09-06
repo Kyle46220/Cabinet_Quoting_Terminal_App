@@ -15,6 +15,18 @@ size_3 = 380
 array = [size_1,size_2,size_3]
 
 
+
+customer_name = [] 
+
+def add_new_customer(customer_name) 
+  customer_name << ARGV[0]
+end 
+
+
+
+add_new_customer(customer_name)
+
+
 def shelf_qty_constraint(height, smallest_shelf_size, largest_shelf_size)
     result = []
     height = height
@@ -554,6 +566,8 @@ end
 
 final_price = mark_up(3, panel_cost, connector_cost, shelf_support_cost)+ mark_up(1.3, machining_cost) 
 
+line_00 = customer_name
+
 
 puts "cabinet details"
 
@@ -604,6 +618,7 @@ save = prompt.yes?('Save cabinet details?')
 if save  
     File.open('cabinet.csv', "a") do |row|
         row << "---------------------------------\n"
+        row << line_00
         row << line_0
         row << "cut list   "+line_01
         row << line_1
