@@ -62,11 +62,11 @@ ruby FAB_CABS.rb reference_or_customer_name
 
 ## control flow diagram 
 
-<img src="Simple Flow Chart Diagram.jpeg"
+<img src="Kyle-Smith-T1A2-5-Simple Flow Chart Diagram.jpeg"
 alt = "Simple Flow Chart Diagram"
 style = "width: 90%;"/>
 
-<img src="Terminal App Flow Chart.jpeg"
+<img src="Kyle-Smith-T1A2-5-Terminal App Flow Chart.jpeg"
 alt = "Simple Flow Chart Diagram"
 style = "width: 90%;"/>
 

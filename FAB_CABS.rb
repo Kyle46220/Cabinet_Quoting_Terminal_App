@@ -104,31 +104,28 @@ def height_checker(arr, val)
 
   result.flatten
 end
-puts font.write("FAB CABS").colorize(:light_magenta)
+puts font.write('FAB CABS').colorize(:light_magenta)
 prompt.keypress('Welcome to FAB CABS - cabinet quoting and configuring app. Press space or enter to continue', keys: %i[space return])
 
 cab_depth = prompt.select('Please select the depth of your cabinet', %w[280 380 580], convert: :int)
 
 # cab_width = prompt.ask('please select the width - max 2400', default: 1000, convert: :int)
 
-
 begin raise
-rescue
-    puts "Pleas enter cab_width - max 2400"
-    print ">"
-    cab_width = gets.chomp.to_i
-    retry unless cab_width >= 180 && cab_width <=2400
+rescue StandardError
+  puts 'Pleas2 enter cab_width - min 200 <=> max 2400'
+  print '>'
+  cab_width = gets.chomp.to_i
+  retry unless cab_width >= 200 && cab_width <= 2400
 end
 
 begin raise
-rescue
-    puts "Please enter cab_height - max 2400"
-    print ">"
-    height_input = gets.chomp.to_i
-    retry unless height_input >= 180 && height_input <=2400
+rescue StandardError
+  puts 'Please enter cab_height - min 200 <=> max 2400'
+  print '>'
+  height_input = gets.chomp.to_i
+  retry unless height_input >= 200 && height_input <= 2400
 end
-
-
 
 # height_input = prompt.ask('please select the preffered cabinet height - max 2400', default: 1000, convert: :int)
 
@@ -299,6 +296,24 @@ def row_builder(arr)
   row4 = []
   row5 = []
   row6 = []
+  row7 = []
+  row8 = []
+  row9 = []
+  row10 = []
+  row11 = []
+  row12 = []
+  row13 = []
+  row14 = []
+  row15 = []
+  row16 = []
+  row17 = []
+  row18 = []
+  row19 = []
+  row20 = []
+  row21 = []
+  row22 = []
+  row23 = []
+  row24 = []
 
   arr.each do |item|
     if row1.sum + item < 2400
@@ -319,6 +334,43 @@ def row_builder(arr)
     elsif row6.sum + item < 2400
       row6 <<  item if item == arr[0]
 
+    elsif row7.sum + item < 2400
+      row7 <<  item if item == arr[0]
+    elsif row8.sum + item < 2400
+      row8 <<  item if item == arr[0]
+    elsif row9.sum + item < 2400
+      row9 <<  item if item == arr[0]
+    elsif row10.sum + item < 2400
+      row10 <<  item if item == arr[0]
+    elsif row11.sum + item < 2400
+      row11 <<  item if item == arr[0]
+    elsif row12.sum + item < 2400
+      row12 <<  item if item == arr[0]
+    elsif row13.sum + item < 2400
+      row13 <<  item if item == arr[0]
+    elsif row14.sum + item < 2400
+      row14 <<  item if item == arr[0]
+    elsif row15.sum + item < 2400
+      row15 <<  item if item == arr[0]
+    elsif row16.sum + item < 2400
+      row16 <<  item if item == arr[0]
+    elsif row17.sum + item < 2400
+      row17 <<  item if item == arr[0]
+    elsif row18.sum + item < 2400
+      row18 <<  item if item == arr[0]
+    elsif row19.sum + item < 2400
+      row19 <<  item if item == arr[0]
+    elsif row20.sum + item < 2400
+      row20 <<  item if item == arr[0]
+    elsif row21.sum + item < 2400
+      row21 << item if item == arr[0]
+    elsif row22.sum + item < 2400
+      row22 <<  item if item == arr[0]
+    elsif row23.sum + item < 2400
+      row23 <<  item if item == arr[0]
+    elsif row24.sum + item < 2400
+      row24 <<  item if item == arr[0]
+
     end
 
     arr = arr.drop(1)
@@ -330,6 +382,24 @@ def row_builder(arr)
   result << row4
   result << row5
   result << row6
+  result << row7
+  result << row8
+  result << row9
+  result << row10
+  result << row11
+  result << row12
+  result << row13
+  result << row14
+  result << row15
+  result << row16
+  result << row17
+  result << row18
+  result << row19
+  result << row20
+  result << row21
+  result << row22
+  result << row23
+  result << row24
 
   remove_empty_rows = result.reject(&:empty?)
 
