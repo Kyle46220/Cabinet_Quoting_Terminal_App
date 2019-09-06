@@ -62,17 +62,10 @@ def height_suggester(options_array, height, shelf_qty)
 
     adj_height_array=[]
 
-    # p options_array
-    # p height
-
-    # if height < 500
-
-    #     adj_height_array << 360
-
-    closest = options_array[shelf_qty.to_i].sort.group_by do |item|
+       closest = options_array[shelf_qty.to_i].sort.group_by do |item|
         item <=> height
     end
-     p closest
+     
     
     
     if closest[0]
@@ -115,9 +108,14 @@ def height_checker(arr, val)
 end
 
 
+# if customer_name.length > 0
 
 
-prompt.keypress("Welcome to Box Majik. Press space or enter to continue", keys: [:space, :return])
+    prompt.keypress("Welcome to Box Majik. Press space or enter to continue", keys: [:space, :return])
+
+# end
+
+
 
 cab_depth = prompt.select("Please select the depth of your cabinet", %w(280 380 580), convert: :int)
 
@@ -156,7 +154,7 @@ new_height = height_suggester(shelf_combo_array, height_input, shelves)
 
 available_height = height_checker(new_height, height_input)
 
-puts available_height
+# puts available_height
 
 # choices = {available_height[0]=>  1, available_height[1]=> 2, available_height[2]=> 3}
 
@@ -309,7 +307,7 @@ end
 
 
 def array_joiner(*arr)
-    p arr
+    # p arr
     array = []        
     array << arr
     array.flatten.flatten
@@ -479,7 +477,7 @@ plywood_total = sheet_counter(row_array, project_hash[:depth].to_i)
 
 # "full parts list:"
 
-p complete_parts_array
+# p complete_parts_array
 
 # puts "cut list"
 # puts "#{project_hash[:depth]}:#{row_array}"
@@ -584,19 +582,19 @@ puts line_01
 
 puts "BOM"
  
-line_1 =  "#{materials_list[:plywood][:name]} | #{plywood_total} | #{panel_cost}\n"
+line_1 =  "#{materials_list[:plywood][:name]} | Qty:#{plywood_total} | $#{panel_cost}\n"
 
 puts line_1
-line_2 = "#{materials_list[:connector][:name]} | #{connector_qty} | #{connector_cost}\n"
+line_2 = "#{materials_list[:connector][:name]} | Qty:#{connector_qty} | $#{connector_cost}\n"
 puts line_2
 
-line_3 = "#{materials_list[:shelf_support][:name]} | #{shelf_support_qty} | #{shelf_support_cost}\n"
+line_3 = "#{materials_list[:shelf_support][:name]} | Qty:#{shelf_support_qty} | $#{shelf_support_cost}\n"
 puts line_3
 
-line_4 = "Total machining length | #{total_machining_length} | #{panel_cost}\n"
+line_4 = "Total machining length | Qty(mm):#{total_machining_length} | $#{panel_cost}\n"
 puts line_4
 
-line_5 = "Total handling  | #{total_pieces} | #{price_calculator(total_pieces, handling_fee_per_piece)}\n"
+line_5 = "Total handling  | Qty:#{total_pieces} | $#{price_calculator(total_pieces, handling_fee_per_piece)}\n"
 puts line_5
    
 puts "final price:"

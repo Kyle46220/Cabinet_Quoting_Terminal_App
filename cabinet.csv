@@ -63,3 +63,17 @@ connector | 4 | 16
 shelf_support | 8 | 8
 Total machining length | 38814 | 300
 final_price  $1417.2656
+---------------------------------
+[nil]{:height=>1780, :width=>1600, :depth=>380, :shelves=>7, :cupboards=>[], :drawers=>[], :colour=>"red", :material_thickness=>18}
+cut list   width:380| lengths:[[1744], [1744], [1744], [1744], [1600], [1600]]plywood | 2 | 200
+connector | 4 | 16
+shelf_support | 8 | 8
+Total machining length | 26298 | 200
+final_price  $979.2992
+---------------------------------
+[nil]{:height=>1800, :width=>1600, :depth=>380, :shelves=>8, :cupboards=>[], :drawers=>[], :colour=>"red", :material_thickness=>18}
+cut list   width:380| lengths:[[1764], [1764], [1764], [1764], [1600], [1600]]plywood | 2 | 200
+connector | 4 | 16
+shelf_support | 8 | 8
+Total machining length | 28340 | 200
+final_price  $1003.136
