@@ -114,3 +114,27 @@ Total machining length | Qty(mm):9988 | $100
 final_price: $496.6752
 
 ---------------------------------
+[nil]
+---------------------------------
+2019-09-06T18:43:24+10:00
+[nil]{:height=>940, :width=>1000, :depth=>280, :shelves=>3, :cupboards=>[], :drawers=>[], :colour=>"black", :material_thickness=>18}
+cut list:width:280| lengths:[[1000, 1000], [964, 964], [964, 904], [904, 904]]
+plywood | Qty:1 | $100
+connector | Qty:4 | $16
+shelf_support | Qty:8 | $8
+Total machining length | Qty(mm):9988 | $100
+final_price: $496.6752
+
+---------------------------------
+[nil]
+---------------------------------
+2019-09-06T19:36:53+10:00
+[nil]{:height=>380, :width=>300, :depth=>280, :shelves=>0, :cupboards=>[], :drawers=>[], :colour=>"black", :material_thickness=>18}
+cut list:width:280| lengths:[[344, 344, 300, 300]]
+plywood | Qty:1 | $100
+connector | Qty:4 | $16
+shelf_support | Qty:8 | $8
+Total machining length | Qty(mm):2480 | $100
+final_price: $408.192
+
+---------------------------------

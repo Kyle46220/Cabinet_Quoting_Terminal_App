@@ -6,6 +6,9 @@ require 'tty-prompt'
 require 'colorize'
 require 'rubocop'
 require 'date'
+require 'tty-font'
+
+font = TTY::Font.new(:standard)
 
 prompt = TTY::Prompt.new
 
@@ -101,14 +104,33 @@ def height_checker(arr, val)
 
   result.flatten
 end
-
-prompt.keypress('Welcome to Box Majik. Press space or enter to continue', keys: %i[space return])
+puts font.write("FAB CABS").colorize(:light_magenta)
+prompt.keypress('Welcome to FAB CABS - cabinet quoting and configuring app. Press space or enter to continue', keys: %i[space return])
 
 cab_depth = prompt.select('Please select the depth of your cabinet', %w[280 380 580], convert: :int)
 
-cab_width = prompt.ask('please select the width - max 2400', default: 1000, convert: :int)
+# cab_width = prompt.ask('please select the width - max 2400', default: 1000, convert: :int)
 
-height_input = prompt.ask('please select the preffered cabinet height - max 2400', default: 1000, convert: :int)
+
+begin raise
+rescue
+    puts "Pleas enter cab_width - max 2400"
+    print ">"
+    cab_width = gets.chomp.to_i
+    retry unless cab_width >= 180 && cab_width <=2400
+end
+
+begin raise
+rescue
+    puts "Please enter cab_height - max 2400"
+    print ">"
+    height_input = gets.chomp.to_i
+    retry unless height_input >= 180 && height_input <=2400
+end
+
+
+
+# height_input = prompt.ask('please select the preffered cabinet height - max 2400', default: 1000, convert: :int)
 
 shelf_qty_constraint_array = shelf_qty_constraint(height_input, size_1, size_2)
 
